@@ -24,11 +24,4 @@ services:
       - "5173:80"
     depends_on:
       - backend
-  # Monitoreo
-  prometheus:
-    image: prom/prometheus
-    container_name: qa-prometheus
-    volumes:
-      - ./infra/prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
+
