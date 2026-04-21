@@ -8,14 +8,14 @@ services:
       - "8001:8000"
     volumes:
       # Esto evita que pierdas tus datos si borrás el contenedor
-      - ./backend/qa_automation.db:/code/qa_automation.db
+      - ./backend:/code
     environment:
-      - DATABASE_URL=sqlite:///./qa_automation.db
+      - DATABASE_URL=sqlite:////code/qa_automation.db
 
   frontend:
     build: ./frontend-qa
     container_name: sut-frontend
     ports:
-      - "5173:5173"
+      - "5173:80"
     depends_on:
       - backend
