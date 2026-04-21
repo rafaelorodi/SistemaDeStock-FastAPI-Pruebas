@@ -1,9 +1,5 @@
 services:
-  # Base de datos en memoria para logs y caché
-  redis:
-    image: redis:alpine
-    container_name: qa-redis
-    restart: always
+
 
   # Tu API de FastAPI
   backend:
