@@ -1,0 +1,35 @@
+services:
+  # Base de datos en memoria para logs y caché
+  redis:
+    image: redis:alpine
+    container_name: qa-redis
+    restart: always
+
+  # Tu API de FastAPI
+  backend:
+    build: ./backend  # <-- Asegurate que tu carpeta se llame así
+    container_name: sut-backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://qa-redis:6379
+
+  # Tu App de React
+  frontend:
+    build: ./frontend # <-- Asegurate que tu carpeta se llame así
+    container_name: sut-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+  # Monitoreo
+  prometheus:
+    image: prom/prometheus
+    container_name: qa-prometheus
+    volumes:
+      - ./infra/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
