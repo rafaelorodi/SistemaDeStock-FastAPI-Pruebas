@@ -7,24 +7,23 @@ services:
 
   # Tu API de FastAPI
   backend:
-    build: ./backend  # <-- Asegurate que tu carpeta se llame así
+    build: ./backend
     container_name: sut-backend
     ports:
       - "8000:8000"
-    depends_on:
-      - redis
+    volumes:
+      # Esto evita que pierdas tus datos si borrás el contenedor
+      - ./backend/qa_automation.db:/code/qa_automation.db
     environment:
-      - REDIS_URL=redis://qa-redis:6379
+      - DATABASE_URL=sqlite:///./qa_automation.db
 
-  # Tu App de React
   frontend:
-    build: ./frontend # <-- Asegurate que tu carpeta se llame así
+    build: ./frontend-qa
     container_name: sut-frontend
     ports:
-      - "5173:5173"
+      - "5173:80"
     depends_on:
       - backend
-
   # Monitoreo
   prometheus:
     image: prom/prometheus
