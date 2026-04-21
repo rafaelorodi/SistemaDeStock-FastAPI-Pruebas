@@ -7,10 +7,10 @@ services:
     ports:
       - "8001:8000"
     volumes:
-      # Esto evita que pierdas tus datos si borrás el contenedor
-      - ./backend:/code
+      # Persistir solo la base de datos, no sobreescribir el código del contenedor
+      - db-data:/code/data
     environment:
-      - DATABASE_URL=sqlite:////code/qa_automation.db
+      - DATABASE_URL=sqlite:////code/data/qa_automation.db
 
   frontend:
     build: ./frontend-qa
@@ -19,3 +19,6 @@ services:
       - "5173:80"
     depends_on:
       - backend
+
+volumes:
+  db-data:
