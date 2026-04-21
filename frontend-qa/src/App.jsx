@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import Login from './components/login';
+import Login from './components/Login';
 import AdminUsuarios from './components/AdminUsuarios';
 import AdminProductos from './components/AdminProductos';
 import VendedorView from './components/VendedorView';
@@ -57,12 +57,12 @@ export default function App() {
   };
 
   const getDashboardTitle = () => {
-    switch(role) {
-        case 'admin_usuarios': return '👥 Gestión de Recursos Humanos';
-        case 'encargado_deposito': return '📦 Control de Almacén y Stock';
-        case 'vendedor': return '🛒 Terminal de Punto de Venta';
-        case 'auditoria': return '🔍 Sistema de Auditoría Central';
-        default: return 'Panel Principal';
+    switch (role) {
+      case 'admin_usuarios': return '👥 Gestión de Recursos Humanos';
+      case 'encargado_deposito': return '📦 Control de Almacén y Stock';
+      case 'vendedor': return '🛒 Terminal de Punto de Venta';
+      case 'auditoria': return '🔍 Sistema de Auditoría Central';
+      default: return 'Panel Principal';
     }
   };
 
@@ -88,15 +88,15 @@ export default function App() {
           <div className="dashboard-header">
             <h2 data-testid="dashboard-title">{getDashboardTitle()}</h2>
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                <span className="badge badge-blue">{role?.toUpperCase()}</span>
-                <button 
-                    onClick={handleLogout} 
-                    className="btn btn-danger" 
-                    id="btn-logout"
-                    data-testid="logout-button"
-                >
-                    Salir
-                </button>
+              <span className="badge badge-blue">{role?.toUpperCase()}</span>
+              <button
+                onClick={handleLogout}
+                className="btn btn-danger"
+                id="btn-logout"
+                data-testid="logout-button"
+              >
+                Salir
+              </button>
             </div>
           </div>
 
