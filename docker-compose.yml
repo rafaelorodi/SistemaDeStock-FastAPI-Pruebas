@@ -1,6 +1,5 @@
 services:
 
-
   # Tu API de FastAPI
   backend:
     build: ./backend
@@ -17,7 +16,6 @@ services:
     build: ./frontend-qa
     container_name: sut-frontend
     ports:
-      - "5173:80"
+      - "5173:5173"
     depends_on:
       - backend
-
