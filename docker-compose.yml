@@ -11,6 +11,9 @@ services:
       - db-data:/code/data
     environment:
       - DATABASE_URL=sqlite:////code/data/qa_automation.db
+    networks:
+      - default
+      - monitoring
 
   frontend:
     build: ./frontend-qa
@@ -22,3 +25,9 @@ services:
 
 volumes:
   db-data:
+
+networks:
+  monitoring:
+    name: qa-monitoring
+    external: true
+

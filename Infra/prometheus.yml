@@ -10,7 +10,7 @@ scrape_configs:
   # 2. Monitoreo de tu API FastAPI
   - job_name: "backend-metrics"
     static_configs:
-      - targets: ["backend:8000"]
+      - targets: ["sut-backend:8000"]
 
   # 3. Monitoreo del propio Prometheus (Auto-diagnóstico)
   - job_name: "prometheus"
