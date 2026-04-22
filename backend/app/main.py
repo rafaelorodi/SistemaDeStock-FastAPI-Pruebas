@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List, Optional
-
+from prometheus_fastapi_instrumentator import Instrumentator
 from . import models, schemas, database, auth 
 
 # Crea las tablas
@@ -317,3 +317,5 @@ def get_all_movements(db: Session = Depends(database.get_db), current_user: mode
         m.product_name = m.product.name if m.product else "Producto Eliminado"
         
     return movements
+
+Instrumentator().instrument(app).expose(app)
