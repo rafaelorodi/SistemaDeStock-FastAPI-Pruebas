@@ -6,3 +6,4 @@ passlib[bcrypt]
 python-multipart
 python-dotenv
 redis
+prometheus-fastapi-instrumentator
