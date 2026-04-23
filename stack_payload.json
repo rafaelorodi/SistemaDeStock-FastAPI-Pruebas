@@ -1,0 +1,7 @@
+{
+  "name": "monitoring",
+  "repositoryURL": "https://github.com/rafaelorodi/SistemaDeStock-FastAPI-Pruebas",
+  "repositoryReferenceName": "refs/heads/main",
+  "composeFile": "Infra/docker-compose.yml",
+  "env": []
+}
