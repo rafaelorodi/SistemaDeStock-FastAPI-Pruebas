@@ -1,11 +1,23 @@
 services:
 
+  # Gateway (Nginx)
+  nginx:
+    build: ./nginx
+    container_name: qa-gateway
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - default
+      - cloudflare_network
+    restart: always
+
   # Tu API de FastAPI
   backend:
     build: ./backend
     container_name: sut-backend
-    ports:
-      - "8001:8000"
     volumes:
       # Persistir solo la base de datos, no sobreescribir el código del contenedor
       - db-data:/code/data
@@ -18,8 +30,6 @@ services:
   frontend:
     build: ./frontend-qa
     container_name: sut-frontend
-    ports:
-      - "5173:80"
     depends_on:
       - backend
     networks:

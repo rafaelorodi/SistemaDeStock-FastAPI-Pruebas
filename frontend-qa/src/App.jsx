@@ -6,10 +6,8 @@ import VendedorView from './components/VendedorView';
 import AuditoriaView from './components/AuditoriaView';
 import './App.css';
 
-// Detectar automáticamente si estamos en local o en el servidor (Docker/Raspberry)
-const API_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-  ? "http://127.0.0.1:8000"
-  : `http://${window.location.hostname}:8001`;
+// Ahora Nginx maneja las rutas, por lo que usamos una ruta relativa
+const API_URL = "/api";
 
 const parseJwt = (token) => {
   try { return JSON.parse(atob(token.split('.')[1])); } catch (e) { return null; }
