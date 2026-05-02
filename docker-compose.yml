@@ -45,6 +45,6 @@ networks:
     driver: bridge
   qa-network:
     external: true
-    name: qa-network
+    name: qa-ecosystem_qa-network
 
 
