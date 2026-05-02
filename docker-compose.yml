@@ -13,7 +13,7 @@ services:
       - DATABASE_URL=sqlite:////code/data/qa_automation.db
     networks:
       - default
-      - monitoring
+      - cloudflare_network
 
   frontend:
     build: ./frontend-qa
@@ -22,12 +22,19 @@ services:
       - "5173:80"
     depends_on:
       - backend
+    networks:
+      - default
+      - cloudflare_network
+    
 
 volumes:
   db-data:
 
 networks:
-  monitoring:
-    name: qa-monitoring
+  default:
+    driver: bridge
+  cloudflare_network:
     external: true
+    name: cloudflare_network
+
 

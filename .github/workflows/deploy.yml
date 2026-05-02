@@ -1,0 +1,12 @@
+name: Deploy a la Bestia
+on:
+  push:
+    branches: [ main ] # Se ejecuta cuando se realizan cambios en el main
+
+jobs:
+  deploy:
+    runs-on: self-hosted # Uso Raspberry
+    steps:
+      - uses: actions/checkout@v4
+      - name: Levantar Stack
+        run: docker compose up -d --build
