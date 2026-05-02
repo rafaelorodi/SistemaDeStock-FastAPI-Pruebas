@@ -11,7 +11,7 @@ services:
       - backend
     networks:
       - default
-      - cloudflare_network
+      - qa-network
     restart: always
 
   # Tu API de FastAPI
@@ -25,7 +25,7 @@ services:
       - DATABASE_URL=sqlite:////code/data/qa_automation.db
     networks:
       - default
-      - cloudflare_network
+      - qa-network
 
   frontend:
     build: ./frontend-qa
@@ -34,7 +34,7 @@ services:
       - backend
     networks:
       - default
-      - cloudflare_network
+      - qa-network
     
 
 volumes:
@@ -43,8 +43,8 @@ volumes:
 networks:
   default:
     driver: bridge
-  cloudflare_network:
+  qa-network:
     external: true
-    name: cloudflare_network
+    name: qa-network
 
 
