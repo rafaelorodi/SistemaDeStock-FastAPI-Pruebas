@@ -6,8 +6,8 @@ import VendedorView from './components/VendedorView';
 import AuditoriaView from './components/AuditoriaView';
 import './App.css';
 
-// Ahora Nginx maneja las rutas, por lo que usamos una ruta relativa
-const API_URL = "/api";
+// Conectar al backend directamente usando la IP/hostname actual en puerto 8001
+const API_URL = `http://${window.location.hostname}:8001`;
 
 const parseJwt = (token) => {
   try { return JSON.parse(atob(token.split('.')[1])); } catch (e) { return null; }
