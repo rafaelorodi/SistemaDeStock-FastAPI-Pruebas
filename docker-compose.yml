@@ -38,7 +38,7 @@ services:
       - default
       - qa-network
     ports:
-      - "5173:80"
+      - "5180:80"
     
 
 volumes:
