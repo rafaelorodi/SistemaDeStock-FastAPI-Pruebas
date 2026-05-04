@@ -26,6 +26,8 @@ services:
     networks:
       - default
       - qa-network
+    ports:
+      - "8000:8000"
 
   frontend:
     build: ./frontend-qa
@@ -35,6 +37,8 @@ services:
     networks:
       - default
       - qa-network
+    ports:
+      - "5173:80"
     
 
 volumes:

@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Levantar Stack
-        run: docker compose up -d --build
+        run: cd ${{ github.workspace }} && docker compose -f docker-compose.yml up -d --build
