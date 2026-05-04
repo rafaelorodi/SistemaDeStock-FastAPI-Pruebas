@@ -27,7 +27,7 @@ services:
       - default
       - qa-network
     ports:
-      - "8002:8000"
+      - "8001:8000"
 
   frontend:
     build: ./frontend-qa
