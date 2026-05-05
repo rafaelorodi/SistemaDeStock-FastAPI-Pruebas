@@ -9,6 +9,24 @@ from . import models, schemas, database, auth
 # Crea las tablas
 models.Base.metadata.create_all(bind=database.engine)
 
+# Crear usuario admin por defecto si no existe
+def create_default_admin():
+    db = database.SessionLocal()
+    try:
+        admin_exists = db.query(models.User).filter(models.User.username == "admin").first()
+        if not admin_exists:
+            hashed = auth.get_password_hash("admin123")
+            admin = models.User(username="admin", hashed_password=hashed, rol="admin_usuarios", is_active=True)
+            db.add(admin)
+            db.commit()
+            print("✓ Default admin created: admin/admin123")
+    except Exception as e:
+        print(f"Error creating admin: {e}")
+    finally:
+        db.close()
+
+create_default_admin()
+
 app = FastAPI(title="QA Professional SUT API")
 
 # Configuración CORS
