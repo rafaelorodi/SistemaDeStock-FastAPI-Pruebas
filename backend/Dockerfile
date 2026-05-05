@@ -15,6 +15,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiamos todo el contenido de la carpeta backend
 COPY . .
 
+# Crear directorio para la base de datos
+RUN mkdir -p /code/data
+
 # EXTREMADAMENTE IMPORTANTE: 
 # Como main.py está dentro de app/, usamos app.main:app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
