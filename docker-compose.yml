@@ -19,10 +19,10 @@ services:
     build: ./backend
     container_name: sut-backend
     volumes:
-      # Persistir solo la base de datos, no sobreescribir el código del contenedor
-      - db-data:/code/data
+      # Volumen bind: monta la carpeta local del backend en /code para que vea qa_automation.db
+      - ./backend:/code
     environment:
-      - DATABASE_URL=sqlite:////code/data/qa_automation.db
+      - DATABASE_URL=sqlite:////code/qa_automation.db
     networks:
       - default
       - qa-network
